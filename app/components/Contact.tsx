@@ -8,9 +8,15 @@ import { Send, CheckCircle, XCircle } from "lucide-react";
 
 import { sendEmail, FormState } from "../actions/sendEmail";
 
-// ✅ initial state (client side allowed)
+// ✅ initial state
 const initialState: FormState = {
   message: "Fill out the form to get in touch.",
+  fieldErrors: {
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  },
 };
 
 // -------------------- SUBMIT BUTTON --------------------
@@ -80,15 +86,16 @@ const SubmissionToast: React.FC<ToastProps> = ({ state, onClose }) => {
           &times;
         </button>
       </div>
-      {/* Progress bar that shrinks over 5s to indicate toast timeout */}
-      <div className="obsolute bottom-0 right-0 mt-4 h-1 w-full bg-black/5 rounded-full overflow-hidden">
+
+      {/* Progress bar at the bottom inside container */}
+      <div className="mt-4 h-1 w-full bg-black/5 rounded-full overflow-hidden">
         <ProgressBar isSuccess={isSuccess} onClose={onClose} />
       </div>
     </motion.div>
   );
 };
 
-// Separate progress bar component that animates width from 100% to 0% over 5s
+// -------------------- PROGRESS BAR --------------------
 const ProgressBar: React.FC<{ isSuccess: boolean; onClose: () => void }> = ({
   isSuccess,
   onClose,
@@ -96,9 +103,9 @@ const ProgressBar: React.FC<{ isSuccess: boolean; onClose: () => void }> = ({
   const [width, setWidth] = React.useState<number>(100);
 
   React.useEffect(() => {
-    // start transition in next tick so CSS transition applies
     const id = setTimeout(() => setWidth(0), 50);
     const timer = setTimeout(() => onClose(), 5000);
+
     return () => {
       clearTimeout(id);
       clearTimeout(timer);
@@ -118,7 +125,7 @@ const ProgressBar: React.FC<{ isSuccess: boolean; onClose: () => void }> = ({
   );
 };
 
-// -------------------- CONTACT FORM MAIN --------------------
+// -------------------- CONTACT FORM --------------------
 export default function Contact() {
   const [state, formAction] = useActionState<FormState, FormData>(
     sendEmail,
@@ -127,28 +134,47 @@ export default function Contact() {
 
   const [showToast, setShowToast] = useState(false);
 
-  useEffect(() => {
-    if (state.success !== undefined) {
-      setShowToast(true);
+useEffect(() => {
 
-      if (state.success) {
+  if (state.success !== undefined) {
+    
+    const id = setTimeout(() => setShowToast(true), 0);
+
+    if (state.success) {
+      const formResetTimer = setTimeout(() => {
         const form = document.getElementById("contact-form") as HTMLFormElement;
         if (form) form.reset();
+      }, 0);
 
-        const timer = setTimeout(() => setShowToast(false), 5000);
-        return () => clearTimeout(timer);
-      }
+
+      const hideTimer = setTimeout(() => setShowToast(false), 5000);
+
+      return () => {
+        clearTimeout(id);
+        clearTimeout(formResetTimer);
+        clearTimeout(hideTimer);
+      };
     }
-  }, [state]);
 
-  const getFieldError = (field: keyof FormState["fieldErrors"]) =>
-    state.fieldErrors?.[field];
+
+    const hideTimer = setTimeout(() => setShowToast(false), 5000);
+
+    return () => {
+      clearTimeout(id);
+      clearTimeout(hideTimer);
+    };
+  }
+}, [state]);
+
+
+ const getFieldError = (field: keyof FormState["fieldErrors"]) =>
+  state.fieldErrors[field];
 
   return (
     <>
       <section id="contact" className="py-20 px-6 bg-background">
         <div className="max-w-3xl mx-auto">
-          {/* Heading */}
+       
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -165,7 +191,6 @@ export default function Contact() {
             </p>
           </motion.div>
 
-          {/* Form Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -174,9 +199,8 @@ export default function Contact() {
             className="bg-white rounded-3xl shadow-xl p-8 md:p-10 border border-secondary/5"
           >
             <form action={formAction} id="contact-form" className="space-y-6">
-              {/* --------- NAME + EMAIL --------- */}
+  
               <div className="grid md:grid-cols-2 gap-6">
-                {/* Name */}
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-secondary/70 ml-1">
                     Name
@@ -198,7 +222,6 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Email */}
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-secondary/70 ml-1">
                     Email
@@ -221,7 +244,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* --------- SUBJECT --------- */}
+           
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-secondary/70 ml-1">
                   Subject
@@ -243,7 +266,7 @@ export default function Contact() {
                 )}
               </div>
 
-              {/* --------- MESSAGE --------- */}
+            
               <div className="space-y-2">
                 <label className="text-sm font-semibold text-secondary/70 ml-1">
                   Message
@@ -265,7 +288,6 @@ export default function Contact() {
                 )}
               </div>
 
-              {/* --------- SUBMIT BUTTON --------- */}
               <SubmitButton />
             </form>
           </motion.div>

@@ -42,9 +42,9 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="bg-secondary text-white">
-      {/* Main Footer Content */}
+   
       <div className="max-w-7xl mx-auto px-18 py-16">
-        {/* Top Section - CTA */}
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,9 +63,9 @@ export default function Footer() {
           </motion.a>
         </motion.div>
 
-        {/* Footer Grid */}
+     
         <div className="grid md:grid-cols-4 gap-12 mb-12">
-          {/* Logo & Description */}
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export default function Footer() {
               consectetur adipiscing elit. Sed lobortis orci elementum egestas
               lobortis.
             </p>
-            {/* Social Links */}
+          
             <div className="flex gap-3">
               {socialLinks.map((social) => {
                 const IconComponent = social.icon;
@@ -105,7 +105,6 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Navigation */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +126,7 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Contact */}
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -149,7 +148,7 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Newsletter */}
+      
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -177,7 +176,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
+ 
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
