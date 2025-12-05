@@ -133,6 +133,7 @@ export default function Hero() {
                       src="/heroImage.png"
                       alt="Profile Image"
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority
                       className="object-cover rounded-full"
                     />
@@ -144,11 +145,8 @@ export default function Hero() {
                   initial={{ opacity: 0, x: 60 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.9 }}
-               className="absolute right-28 -bottom-24 bg-white rounded-2xl p-6 shadow-xl"
-
+                  className="absolute right-28 -bottom-24 bg-white rounded-2xl p-6 shadow-xl"
                 >
-                 
-
                   <div className="text-4xl font-bold text-secondary">
                     1 Year
                   </div>
