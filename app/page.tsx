@@ -4,7 +4,6 @@ import Services from "./components/Services";
 import WorkExperience from "./components/WorkExperience";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
       <WorkExperience />
       <Skills />
       <Projects />
-      <Contact />
       <Footer />
     </main>
   );

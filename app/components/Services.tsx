@@ -5,19 +5,19 @@ import { useState } from "react";
 
 const services = [
   {
-    title: "UI / UX Design",
-    description: "Creating intuitive and beautiful user interfaces",
-    image: "/service-1.png",
+    title: "Mobile App Development",
+    description: "Designing and building seamless, user-friendly mobile applications that engage and delight users.",
+    image: "/service-1.jpg",
   },
   {
-    title: "Web Design",
-    description: "Modern and responsive website designs",
-    image: "/service-2.png",
+    title: "Web Development",
+    description: "Creating modern, responsive, and high-performance websites tailored to your business needs.",
+    image: "/service-2.jpg",
   },
   {
     title: "Landing Page",
     description: "High-converting landing page designs",
-    image: "/service-3.png",
+    image: "/service-3.jpg",
   },
 ];
 
@@ -47,14 +47,14 @@ export default function Services() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-white/70 text-lg leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-              bibendum posuere posuere. Vestibulum bibendum.
+              I craft digital experiences that are visually stunning, highly
+              functional, and user-friendly. Check out the services I offer:
             </p>
           </motion.div>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -64,36 +64,37 @@ export default function Services() {
               transition={{ delay: index * 0.2 }}
               whileHover={{ y: -10 }}
               onHoverStart={() => setActiveIndex(index)}
-              className="group relative bg-white/5 backdrop-blur-sm rounded-3xl p-6 border border-white/10 overflow-hidden cursor-pointer"
+              className="group relative bg-white/5 backdrop-blur-md rounded-3xl p-6 border border-white/10 overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-300"
             >
               {/* Decorative Elements */}
               <motion.div
                 className="absolute -top-20 -right-20 w-40 h-40 bg-primary/20 rounded-full blur-3xl"
                 animate={{
-                  scale: activeIndex === index ? 1.5 : 1,
-                  opacity: activeIndex === index ? 0.3 : 0.1,
+                  scale: activeIndex === index ? 1.6 : 1,
+                  opacity: activeIndex === index ? 0.35 : 0.1,
                 }}
                 transition={{ duration: 0.3 }}
               />
 
               <div className="relative z-10">
                 {/* Service Title */}
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors duration-300">
                   {service.title}
                 </h3>
+                <p className="text-white/60 mb-4">{service.description}</p>
 
-                {/* Service Image/Preview */}
-                <div className="relative h-64 bg-white/10 rounded-2xl mb-6 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className="w-full h-full bg-linear-to-br from-primary/20 to-accent/10 flex items-center justify-center"
-                    >
-                      <span className="text-white/30 text-sm">
-                        Service Preview
-                      </span>
-                    </motion.div>
-                  </div>
+                {/* Service Image / Preview */}
+                <div className="relative h-64 rounded-2xl overflow-hidden mb-6 shadow-inner">
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-primary/20 to-accent/10"
+                  >
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                  </motion.div>
                 </div>
 
                 {/* Arrow Icon */}
@@ -121,14 +122,14 @@ export default function Services() {
         </div>
 
         {/* Pagination Dots */}
-        <div className="flex justify-center gap-2 mt-12">
+        <div className="flex justify-center gap-3 mt-12">
           {services.map((_, index) => (
             <motion.button
               key={index}
               onClick={() => setActiveIndex(index)}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
-              className={`h-2 rounded-full transition-all ${
+              className={`h-2 rounded-full transition-all duration-300 ${
                 index === activeIndex
                   ? "w-8 bg-primary"
                   : "w-2 bg-white/30 hover:bg-white/50"

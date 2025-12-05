@@ -30,10 +30,10 @@ export default function Navbar() {
               className="flex items-center gap-2"
             >
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">J</span>
+                <span className="text-white font-bold text-lg">AH</span>
               </div>
               <span className="text-white font-bold text-lg tracking-wide">
-                JCREA
+                Ali Haider
               </span>
             </motion.div>
           </Link>

@@ -1,24 +1,32 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiExpress,
+  SiPostgresql,
+  SiMongodb,
+  SiTailwindcss,
+  SiFigma,
+  SiGit,
+} from "react-icons/si";
 
 const skills = [
-  { name: "Javascript", icon: "🟨" },
-  { name: "Typescript", icon: "🔷" },
-  { name: "React", icon: "⚛️" },
-  { name: "Next.js", icon: "▲" },
-  { name: "Node.js", icon: "🟢" },
-  { name: "Express.js", icon: "⚡" },
-  { name: "Nest.js", icon: "🦅" },
-  { name: "Socket.io", icon: "🔌" },
-  { name: "PostgreSQL", icon: "🐘" },
-  { name: "MongoDB", icon: "🍃" },
-  { name: "Sass/Scss", icon: "💅" },
-  { name: "Tailwindcss", icon: "🌊" },
-  { name: "Figma", icon: "🎨" },
-  { name: "Cypress", icon: "🌲" },
-  { name: "Storybook", icon: "📚" },
-  { name: "Git", icon: "📦" },
+  { name: "Javascript", icon: SiJavascript, color: "#F7DF1E" },
+  { name: "Typescript", icon: SiTypescript, color: "#3178C6" },
+  { name: "React", icon: SiReact, color: "#61DAFB" },
+  { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+  { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+  { name: "Express.js", icon: SiExpress, color: "#000000" },
+  { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
+  { name: "MongoDB", icon: SiMongodb, color: "#13AA52" },
+  { name: "Tailwindcss", icon: SiTailwindcss, color: "#06B6D4" },
+  { name: "Figma", icon: SiFigma, color: "#F24E1E" },
+  { name: "Git", icon: SiGit, color: "#F1502F" },
 ];
 
 export default function Skills() {
@@ -75,18 +83,10 @@ export default function Skills() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: (index % skills.length) * 0.05 }}
-                  whileHover={{ scale: 1.1, y: -10 }}
-                  className="flex-shrink-0 flex flex-col items-center gap-3 cursor-pointer"
+                  whileHover={{ scale: 1.15 }}
+                  className="shrink-0 flex flex-col items-center gap-3 cursor-pointer"
                 >
-                  <motion.div
-                    className="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-secondary/10"
-                    whileHover={{
-                      boxShadow: "0 8px 24px rgba(255, 107, 53, 0.2)",
-                      borderColor: "rgba(255, 107, 53, 0.3)",
-                    }}
-                  >
-                    <span className="text-4xl">{skill.icon}</span>
-                  </motion.div>
+                  <skill.icon size={60} style={{ color: skill.color }} />
                   <span className="text-sm font-medium text-secondary whitespace-nowrap">
                     {skill.name}
                   </span>
@@ -124,18 +124,10 @@ export default function Skills() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: (index % skills.length) * 0.05 }}
-                  whileHover={{ scale: 1.1, y: -10 }}
-                  className="flex-shrink-0 flex flex-col items-center gap-3 cursor-pointer"
+                  whileHover={{ scale: 1.15 }}
+                  className="shrink-0 flex flex-col items-center gap-3 cursor-pointer"
                 >
-                  <motion.div
-                    className="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-secondary/10"
-                    whileHover={{
-                      boxShadow: "0 8px 24px rgba(255, 107, 53, 0.2)",
-                      borderColor: "rgba(255, 107, 53, 0.3)",
-                    }}
-                  >
-                    <span className="text-4xl">{skill.icon}</span>
-                  </motion.div>
+                  <skill.icon size={60} style={{ color: skill.color }} />
                   <span className="text-sm font-medium text-secondary whitespace-nowrap">
                     {skill.name}
                   </span>
