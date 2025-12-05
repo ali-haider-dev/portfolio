@@ -147,19 +147,7 @@ export default function Hero() {
                className="absolute right-28 -bottom-24 bg-white rounded-2xl p-6 shadow-xl"
 
                 >
-                  <div className="flex items-center gap-2 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <motion.span
-                        key={i}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 1.1 + i * 0.1 }}
-                        className="text-primary text-xl"
-                      >
-                        ⭐
-                      </motion.span>
-                    ))}
-                  </div>
+                 
 
                   <div className="text-4xl font-bold text-secondary">
                     1 Year

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const navItems = [
   { name: "Home", href: "#home" },
@@ -13,6 +14,29 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map((item) => item.href.substring(1)); // Remove '#'
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Check if section is in viewport
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <motion.nav
       initial={{ y: -100, opacity: 0 }}
@@ -49,7 +73,7 @@ export default function Navbar() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                    item.name === "Home"
+                    item.href.substring(1) === activeSection
                       ? "bg-primary text-white"
                       : "text-white/80 hover:text-white hover:bg-white/10"
                   }`}
