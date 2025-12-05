@@ -139,19 +139,6 @@ export default function Hero() {
                     />
                   </div>
                 </div>
-
-                {/* Experience Badge */}
-                <motion.div
-                  initial={{ opacity: 0, x: 60 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.9 }}
-                  className="absolute right-28 -bottom-24 bg-white rounded-2xl p-6 shadow-xl"
-                >
-                  <div className="text-4xl font-bold text-secondary">
-                    1 Year
-                  </div>
-                  <div className="text-secondary/60 text-sm">Experience</div>
-                </motion.div>
               </div>
             </motion.div>
           </div>
